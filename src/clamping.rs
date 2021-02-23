@@ -207,18 +207,15 @@ impl Display for Bar {
 
         let line = String::from(self.line()).repeat(reached);
 
-        // crop hat if end of bar is reached
-        let hat = &String::from(self.hat())[0..min(1, self.inner_bar_len() - reached)];
-
         // fill up rest with empty line
         let empty_line =
-            String::from(self.empty_line()).repeat(self.inner_bar_len() - reached - hat.len());
+            String::from(self.empty_line()).repeat(self.inner_bar_len() - reached - 1);
         write!(
             f,
             "{}{}{}{}{}",
             self.left_bracket(),
             line,
-            hat,
+            self.hat(),
             empty_line,
             self.right_bracket()
         )
