@@ -126,19 +126,19 @@ impl Bar {
     }
 
     fn line(&self) -> char {
-        self.style.chars().nth(0).unwrap()
+        self.style.chars().nth(1).unwrap()
     }
 
     fn hat(&self) -> char {
-        self.style.chars().nth(0).unwrap()
+        self.style.chars().nth(2).unwrap()
     }
 
     fn empty_line(&self) -> char {
-        self.style.chars().nth(0).unwrap()
+        self.style.chars().nth(3).unwrap()
     }
 
     fn right_bracket(&self) -> char {
-        self.style.chars().nth(0).unwrap()
+        self.style.chars().nth(4).unwrap()
     }
 }
 
