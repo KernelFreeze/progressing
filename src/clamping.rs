@@ -118,27 +118,27 @@ impl Bar {
     }
 
     fn brackets_len(&self) -> usize {
-        self.left_bracket().len() + self.right_bracket().len()
+        2
     }
 
-    fn left_bracket(&self) -> &str {
-        &self.style[0..1]
+    fn left_bracket(&self) -> char {
+        self.style.chars().nth(0).unwrap()
     }
 
-    fn line(&self) -> &str {
-        &self.style[1..2]
+    fn line(&self) -> char {
+        self.style.chars().nth(0).unwrap()
     }
 
-    fn hat(&self) -> &str {
-        &self.style[2..3]
+    fn hat(&self) -> char {
+        self.style.chars().nth(0).unwrap()
     }
 
-    fn empty_line(&self) -> &str {
-        &self.style[3..4]
+    fn empty_line(&self) -> char {
+        self.style.chars().nth(0).unwrap()
     }
 
-    fn right_bracket(&self) -> &str {
-        &self.style[4..5]
+    fn right_bracket(&self) -> char {
+        self.style.chars().nth(0).unwrap()
     }
 }
 
@@ -205,13 +205,14 @@ impl Display for Bar {
         // -> no brackets involved
         let reached: usize = (self.progress * self.inner_bar_len() as f64) as usize;
 
-        let line = self.line().repeat(reached);
+        let line = String::from(self.line()).repeat(reached);
+
         // crop hat if end of bar is reached
-        let hat = &self.hat()[0..min(self.hat().len(), self.inner_bar_len() - reached)];
+        let hat = &String::from(self.hat())[0..min(1, self.inner_bar_len() - reached)];
+
         // fill up rest with empty line
-        let empty_line = self
-            .empty_line()
-            .repeat(self.inner_bar_len() - reached - hat.len());
+        let empty_line =
+            String::from(self.empty_line()).repeat(self.inner_bar_len() - reached - hat.len());
         write!(
             f,
             "{}{}{}{}{}",
